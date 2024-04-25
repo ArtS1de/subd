@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+    h1= title
+    table
+        tr 
+            th id
+            th Сумма
+        each item in payments
+            tr
+                td= item.id
+                td= item.amount
