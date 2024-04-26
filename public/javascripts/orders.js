@@ -45,6 +45,28 @@ $(document).ready(function(){
 
     })
 
+    $(document).ready(function(){
 
+        $.ajax({
+            type: 'GET',
+            url: '/api/orders',
+            dataType: 'JSON'
+        }).done(function( response ) {
+    
+            response.orders.forEach(order => {
+                $('#tbl_orders').append(
+                    `<tr>
+                        <td>${order.id}
+                        <td>${order.label}
+                        <td>${order.id_status}
+                        <td>${order.id_client}
+                        <td>${order.amount}
+                    </tr>`
+                )
+            })
+    
+        });
+    })
+    
 });
 

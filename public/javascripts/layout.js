@@ -26,8 +26,6 @@ $(document).ready(function(){
     })
 });
 
-
-
 function logout (e) {
 	e.preventDefault()
 	$.ajax({

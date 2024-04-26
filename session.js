@@ -33,19 +33,9 @@ exports.auth = function(req) {
 	var cookies = req.cookies
 	var secret = cookies['app_user']
 
-	console.log(cookies)
-	
-	/*
 	if (!secret) {
 		return {}
-	}*/
-
-	if (!secret || typeof secret !== 'string') {
-    	return {}
 	}
-
-	///////////////////////////
-
 	var res = secret.split('--');
 
 	if(!res.length) {
@@ -60,7 +50,20 @@ exports.auth = function(req) {
 	if (!session.active || ((current_timestamp - session.timestamp) > 43200*1000)) {
 		return 0;
 	}
+
 	return session;
+}
+
+exports.can = function(user) {
+
+	let res = {}
+
+	res.view_users = user && user.id_role == 1 ? true : false
+    res.view_payments = user && user.id_role <= 2 ? true : false
+    res.view_orders = user && user.id_role <= 3  ? true : false
+    res.view_clients = user && user.id_role <= 2 ? true : false
+
+    return res
 }
 
 exports.logout = function(login) {

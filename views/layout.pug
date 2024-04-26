@@ -6,7 +6,13 @@ html
 
     script(src='/javascripts/jquery.min.js')
     script(src='/javascripts/layout.js')
+    script(src='/javascripts/orders.js')
   body
+    if user
+      div
+        span= user.login 
+        <br>
+        span= user.fio
     block content
 
     div#login_popup.q-window

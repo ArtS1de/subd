@@ -15,6 +15,7 @@ var order_itemsRouter = require('./routes/order_items');
 var order_statusesRouter = require('./routes/order_statuses');
 var paymentsRouter = require('./routes/payments');
 var payment_typesRouter = require('./routes/payment_types');
+var clientsRouter = require('./routes/clients');
 
 var app = express();
 
@@ -43,11 +44,18 @@ app.use('/order_items', order_itemsRouter);
 app.use('/order_statuses', order_statusesRouter);
 app.use('/payments', paymentsRouter);
 app.use('/payment_types', payment_typesRouter);
+app.use('/clients', clientsRouter);
 
 var api = require('./routes/api.js');
 app.use('/api', api);
 var api_auth = require('./routes/api/auth');
 api.use('/auth', api_auth);
+
+var api_users = require('./routes/api/users');
+api.use('/users', api_users);
+
+var api_orders = require('./routes/api/orders');
+api.use('/orders', api_orders);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
